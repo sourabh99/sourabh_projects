@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="UXsample">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link href="UXstyle.css" rel="stylesheet">
+
+    </head>
+<body>
+<div ng-controller="UXCtrl as mem">
+<h1 align="center">UX SOCIETY MEMBERS</h1>
+    <hr>
+    <input type="search" class="searching" placeholder="What do you want to search" ng-model="mctrl.srchtext">
+    <hr>
+    <div class="briefInfo">
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>email</th>
+                <th>Company</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="m in mem.members | filter:mctrl.srchtext" ng-click="mem.memberSelected=m" ng-class="{true: 'active', false: ''}[mem.memberSelected==m]" >
+                <td>{{m.firstName}} {{m.surname}}</td>
+                <td>{{m.city}}</td>
+                <td>{{m.email}}</td>
+                <td>{{m.company}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="detailedInfo" >
+        <h2>Details</h2>
+        <p>ID: {{mem.memberSelected.id}}</p>
+        <p>Name: {{mem.memberSelected.title}}{{mem.memberSelected.firstName}} {{mem.memberSelected.surname}} </p>
+        <p> Address: {{mem.memberSelected.streetAddress}},{{mem.memberSelected.city}},{{mem.memberSelected.state}},{{mem.memberSelected.country}} {{mem.memberSelected.zipCode}}</p>
+        <p>Gender: {{mem.memberSelected.gender}}</p>
+        <p>Birthday: {{mem.memberSelected.birthday}}</p>
+        <p>Company: {{mem.memberSelected.company}}</p>
+        <p>Occupation: {{mem.memberSelected.occupation}}</p>
+        <p>Motto: {{mem.memberSelected.motto}}</p>
+    </div>
+</div>
+<script src="https://code.angularjs.org/1.3.15/angular.js"></script>
+<script src="UXScript1.js"></script>
+</body>
+
+</html>
